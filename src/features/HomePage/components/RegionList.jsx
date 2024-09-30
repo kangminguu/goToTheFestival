@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { regionList } from "../../../constants/regionList";
+import { useSelectedRegion } from "../../../store/store";
 
 export default function RegionList() {
     const scrollContainerRef = useRef(null);
@@ -8,7 +9,7 @@ export default function RegionList() {
     let scrollLeft;
 
     /** 선택된 지역, 초기값은 전국(전체) */
-    const [selectedRegion, setSelectedRegion] = useState(regionList[0].name);
+    const { selectedRegion, setSelectedRegion } = useSelectedRegion();
 
     /** 클릭 후 드레그 중 이벤트 */
     const handleMouseDown = (e) => {
@@ -33,12 +34,12 @@ export default function RegionList() {
 
     /** 지역 리스트 클릭 이벤트 */
     const handleOnClick = (region) => {
-        console.log(region);
-        setSelectedRegion(region); // 선택된 지역으로 변경
+        setSelectedRegion(region.rnum); // 선택된 지역으로 변경
+        console.log(region.name);
     };
 
     return (
-        <div className="w-[100%] h-[44px] shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] select-none">
+        <div className="w-[100%] h-[44px] bg-[#FFFFFF] relative shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] select-none">
             <div
                 className="flex h-[100%] w-auto overflow-x-auto no-scrollbar items-center"
                 ref={scrollContainerRef}
@@ -52,11 +53,11 @@ export default function RegionList() {
                         <span
                             key={index}
                             className={`text-[16px] font-bold ${
-                                selectedRegion === region.name
+                                selectedRegion === region.rnum
                                     ? "text-[#FF5F00]"
                                     : "text-[#000000]"
                             } hover:text-[#FF5F00] w-auto mx-[16px] text-center flex-shrink-0`}
-                            onClick={() => handleOnClick(region.name)}
+                            onClick={() => handleOnClick(region)}
                         >
                             {region.name}
                         </span>
