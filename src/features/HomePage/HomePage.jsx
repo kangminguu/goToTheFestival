@@ -5,7 +5,9 @@ export default function HomePage() {
     return (
         <div>
             <RegionList />
-            <CardList />
+            <div className="relative top-[96px] pb-[60px]">
+                <CardList />
+            </div>
         </div>
     );
 }

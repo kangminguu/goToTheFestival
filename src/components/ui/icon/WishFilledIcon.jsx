@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
-export default function WishIcon() {
+export default function WishIcon({ isWished }) {
     const wishedIoMdHeart = (
         <IoMdHeart className="text-[24px] text-[#FF5F00] absolute top-[16px] right-[16px]" />
     );
@@ -12,5 +13,5 @@ export default function WishIcon() {
         </div>
     );
 
-    return notWishedIoMdHeart;
+    return isWished ? wishedIoMdHeart : notWishedIoMdHeart;
 }

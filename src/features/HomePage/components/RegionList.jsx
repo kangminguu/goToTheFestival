@@ -35,11 +35,10 @@ export default function RegionList() {
     /** 지역 리스트 클릭 이벤트 */
     const handleOnClick = (region) => {
         setSelectedRegion(region.rnum); // 선택된 지역으로 변경
-        console.log(region.name);
     };
 
     return (
-        <div className="w-[100%] h-[44px] bg-[#FFFFFF] relative shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] select-none">
+        <div className="max-w-[480px] w-[100%] h-[44px] z-50 bg-[#FFFFFF] shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] select-none fixed top-[52px]">
             <div
                 className="flex h-[100%] w-auto overflow-x-auto no-scrollbar items-center"
                 ref={scrollContainerRef}

@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 import { FestivalState } from "./index";
 import { WishFilledIcon } from "./ui/icon/index";
+import { useWishListStore } from "../store/store";
+import noImage from "../assets/noImage.png";
 
 export default function Card({ festival }) {
+    /** YYYYMMDD > YYYY.MM.DD 형식으로 바꾸는 함수 */
     const dateFormat = (date) =>
         `${date.slice(0, 4)}.${date.slice(4, 6)}.${date.slice(6)}`;
 
-    const image = festival.firstimage;
+    // 축제 이미지, 제목, 시작날짜, 종료날짜, 주소
+    const image = festival.firstimage !== "" ? festival.firstimage : noImage;
     const title =
         festival.title.length > 20
             ? festival.title.slice(0, 20) + "..."
@@ -18,6 +22,33 @@ export default function Card({ festival }) {
             ? festival.addr1.slice(0, 25)
             : festival.addr1;
 
+    // 오늘 날짜
+    const date = new Date();
+    const year = `${date.getFullYear()}`;
+    const month = `${date.getMonth() + 1}`.padStart(2, "0");
+    const day = `${date.getDate()}`.padStart(2, "0");
+    const today = year + month + day;
+
+    // 축제 진행 여부, 항상 오늘을 포함하여 이후로 조회함으로 "종료"는 있을 수 없음
+    // 찜 한 것중에 "종료"가 있다면??
+    let festivalState =
+        today >= festival.eventstartdate
+            ? today > festival.eventenddate
+                ? "종료"
+                : "진행중"
+            : "예정";
+
+    const { wishList, addWishList, deleteWishList } = useWishListStore();
+
+    // 축제가 위시리스트에 있는 지 여부
+    const wishListContentId = wishList.map((wish) => wish.contentid);
+    const isWished = wishListContentId.includes(festival.contentid);
+
+    // 찜 버튼 클릭 이벤트
+    const handleOnClickWish = () => {
+        !isWished ? addWishList(festival) : deleteWishList(festival);
+    };
+
     return (
         <div className="mx-[16px] mb-[16px] h-[320px] relative">
             <div className="h-[240px] overflow-hidden rounded-[10px]">
@@ -27,8 +58,10 @@ export default function Card({ festival }) {
                     alt=""
                 />
             </div>
-            <FestivalState />
-            <WishFilledIcon />
+            <FestivalState festivalState={festivalState} />
+            <div onClick={() => handleOnClickWish()}>
+                <WishFilledIcon isWished={isWished} />
+            </div>
             <p className="text-[16px] font-bold relative top-[10px]">{title}</p>
             <div className="text-[12px] text-[#636363] absolute bottom-[0px]">
                 <p>
