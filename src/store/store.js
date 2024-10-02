@@ -25,10 +25,10 @@ const useTabMenuStore = create((set) => ({
 }));
 
 /** 클릭된 축제 정보 */
-// const useFestivalInfoStore = create((set) => ({
-//     festivalInfo: {},
-//     setFestivalInfo: (state) => set({ festivalInfo: state }),
-// }));
+const useFestivalInfoStore = create((set) => ({
+    festivalInfo: {},
+    setFestivalInfo: (state) => set({ festivalInfo: state }),
+}));
 
 /** 찜 목록 상태 */
 const useWishListStore = create((set) => ({
@@ -61,4 +61,5 @@ export {
     useFestivalListStore,
     useTabMenuStore,
     useWishListStore,
+    useFestivalInfoStore
 };

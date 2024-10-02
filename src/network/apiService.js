@@ -38,43 +38,19 @@ const getFestivalList = async (code) => {
 }
 
 const getDetailURL = `detailCommon1?serviceKey=${KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=15&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=10&pageNo=1`
+const getDateURL = `detailIntro1?serviceKey=${KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=15&numOfRows=10&pageNo=1`
 
 /** detail 페이지에 들어갈 축제 정보를 가져오는 함수, contentid 필요 */
 const getDetailFestivalInfo = async (contentId) => {
-    const res = await fetch(baseURL + getDetailURL + `&contentId=${contentId}`);
-    const detail = await res.json();
-    const data = detail.response.body.items.item[0];
+    const res_detailURL = await fetch(baseURL + getDetailURL + `&contentId=${contentId}`);
+    const res_DateURL = await fetch(baseURL + getDateURL + `&contentId=${contentId}`);
 
-    // console.log(baseURL + getDetailURL + `&contentId=${contentId}`);
+    const data_detail = await res_detailURL.json();
+    const data_date = await res_DateURL.json();
 
-    // const data = {
-    //     contentid: "3362959",
-    //     contenttypeid: "15",
-    //     title: "청주 디저트·베이커리 페스타",
-    //     createdtime: "20240909172346",
-    //     modifiedtime: "20240909172543",
-    //     tel: "043-201-2056",
-    //     telname: "청주시",
-    //     homepage: "\u003Ca href=\"https://www.cheongju.go.kr/ktour/selectClturCntnts2019View.do?key=20326&clturCntntsNo=2141&clturCode=7&pageUnit=8&pageIndex=1&searchCnd=all&odf=nm_c\" target=\"_blank\" title=\"새창 : @@@축제 홈페이지 이동\"\u003Ewww.cheongju.go.kr\u003C/a\u003E",
-    //     booktour: "",
-    //     firstimage: "http://tong.visitkorea.or.kr/cms/resource/39/3362939_image2_1.JPG",
-    //     firstimage2: "http://tong.visitkorea.or.kr/cms/resource/39/3362939_image3_1.JPG",
-    //     cpyrhtDivCd: "Type3",
-    //     areacode: "33",
-    //     sigungucode: "10",
-    //     cat1: "A02",
-    //     cat2: "A0207",
-    //     cat3: "A02070200",
-    //     addr1: "충청북도 청주시 청원구 상당로 314 (내덕동)",
-    //     addr2: "",
-    //     zipcode: "28501",
-    //     mapx: "127.4889281085",
-    //     mapy: "36.6566740551",
-    //     mlevel: "6",
-    //     overview: "청주 디저트·베이커리 페스타는 '달콤한 도시 청주'를 주제로 개최되며, 축제기간 지역을 대표하는 디저트·베이커리 홍보 및 판매, 관련 체험 및 부대행사, 관련 학과 학생들의 지역 대표 디저트 베이커리 창작 작품 전시 이벤트, 축제와 어우러진 잔잔한 공연, 지역 대표 농특산물 브랜드 '청원생명 상생장터' 등 다채로운 행사가 진행된다."
-    // }
+    const festivalInfo = Object.assign({}, data_detail.response.body.items.item[0], data_date.response.body.items.item[0]);
 
-    return data;
+    return festivalInfo;
 }
 
 export { getFestivalList, getDetailFestivalInfo }

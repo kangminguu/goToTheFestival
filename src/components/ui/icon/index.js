@@ -13,3 +13,4 @@ export { default as LocationIcon } from './LocationIcon';
 export { default as TopButtonIcon } from './TopButtonIcon';
 export { default as CafeIcon } from './CafeIcon';
 export { default as RestaurantIcon } from './RestaurantIcon';
+
