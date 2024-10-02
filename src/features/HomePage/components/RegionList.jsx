@@ -34,6 +34,7 @@ export default function RegionList() {
 
     /** 지역 리스트 클릭 이벤트 */
     const handleOnClick = (region) => {
+        window.scrollTo(0, 0);
         setSelectedRegion(region.rnum); // 선택된 지역으로 변경
     };
 

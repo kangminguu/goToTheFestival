@@ -6,14 +6,17 @@ export default function Footer() {
     const { tab, setTab } = useTabMenuStore();
 
     const handleOnClickHome = () => {
+        window.scrollTo(0, 0);
         setTab("home");
     };
 
     const handleOnClickSearch = () => {
+        window.scrollTo(0, 0);
         setTab("search");
     };
 
     const handleOnClickWish = () => {
+        window.scrollTo(0, 0);
         setTab("wish");
     };
 
