@@ -18,10 +18,46 @@ const useSelectedRegion = create((set) => ({
     setSelectedRegion: (state) => set({ selectedRegion: state })
 }));
 
+const date = new Date();
+const year = `${date.getFullYear()}`;
+const month = `${date.getMonth() + 1}`.padStart(2, "0");
+const day = `${date.getDate()}`.padStart(2, "0");
+const today = year + month + day;
+
+/** 검색 페이지 조건 */
+const useSearchPageStore = create((set) => ({
+    region: "0", // 지역
+    setRegion: (state = "0") => set({ region: state }),
+
+    startDate: today, // 시작 날짜
+    setStartDate: (state = today) => set({ startDate: state }),
+
+    endDate: today, // 끝 날짜
+    setEndDate: (state = today) => set({ endDate: state }),
+
+    keyword: "", // 검색 키워드
+    setKeyword: (state = "") => set({ keyword: state }),
+}));
+
+/** 검색 스탭 상태 */
+const useSearchTabStore = create((set) => ({
+    isTab: false,
+    setIsTab: (state) => set({ isTab: state }),
+
+    searchTab: "날짜",
+    setSearchTab: (state) => set({ searchTab: state }),
+}));
+
 /** 탭 메뉴 상태 */
 const useTabMenuStore = create((set) => ({
     tab: "home",
     setTab: (state) => set({ tab: state })
+}));
+
+/** 상세 페이지 인지 상태 */
+const useIsDetailPageStore = create((set) => ({
+    isDetailPage: false,
+    setIsDetailPage: (state) => set({ isDetailPage: state })
 }));
 
 /** 클릭된 축제 정보 */
@@ -61,5 +97,8 @@ export {
     useFestivalListStore,
     useTabMenuStore,
     useWishListStore,
-    useFestivalInfoStore
+    useFestivalInfoStore,
+    useIsDetailPageStore,
+    useSearchPageStore,
+    useSearchTabStore
 };

@@ -54,18 +54,13 @@ export default function Card({ festival }) {
         !isWished ? addWishList(festival) : deleteWishList(festival);
     };
 
-    /** 축제 카드 클릭 이벤트 */
-    const handleOnClickDetail = () => {
-        sessionStorage.setItem("detailInfo", JSON.stringify(festival));
-    };
-
     return (
         <div className="mx-[16px] mb-[16px] h-[320px] relative">
             <div onClick={(e) => handleOnClickWish(e)}>
                 <WishFilledIcon isWished={isWished} />
             </div>
             <Link to={`/detail/${festival.contentid}`}>
-                <div onClick={() => handleOnClickDetail()}>
+                <div>
                     <div className="h-[240px] overflow-hidden rounded-[10px]">
                         <img
                             className="object-cover w-full h-full"

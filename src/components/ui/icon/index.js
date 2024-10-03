@@ -7,6 +7,7 @@ export { default as WishIcon } from './WishIcon';
 
 export { default as WishFilledIcon } from './WishFilledIcon';
 
+export { default as CloseIcon } from './CloseIcon';
 export { default as CallIcon } from './CallIcon';
 export { default as CalendarIcon } from './CalendarIcon';
 export { default as LocationIcon } from './LocationIcon';

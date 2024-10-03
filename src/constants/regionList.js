@@ -75,7 +75,7 @@ const regionList = [
         "rnum": 12,
         "code": "34",
         "name": "충남",
-        "fullName": "전충청남도체"
+        "fullName": "충청남도"
     },
     {
         "rnum": 13,

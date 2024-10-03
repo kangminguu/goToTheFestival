@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getDetailFestivalInfo } from "../../network/apiService";
 import { useEffect, useState } from "react";
-import { useLoadingStore } from "../../store/store";
+import { useLoadingStore, useIsDetailPageStore } from "../../store/store";
 
 import noImage from "../../assets/noImage.png";
 
@@ -19,6 +19,12 @@ export default function DetailPage() {
     const { id } = useParams(); // URL에서 id 가져오기
     const { loading, setLoading } = useLoadingStore();
     const [detailInfo, setDetailInfo] = useState(null);
+
+    const { setIsDetailPage } = useIsDetailPageStore();
+
+    useEffect(() => {
+        setIsDetailPage(true);
+    }, [setIsDetailPage]);
 
     useEffect(() => {
         const getDetailInfo = async () => {

@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import { HomeIcon, SearchIcon, WishIcon } from "./ui/icon/index";
-import { useTabMenuStore } from "../store/store";
+import { useTabMenuStore, useSearchPageStore } from "../store/store";
 
 export default function Footer() {
     const { tab, setTab } = useTabMenuStore();
+    const { setRegion, setStartDate, setEndDate, setKeyword } =
+        useSearchPageStore();
 
     const handleOnClickHome = () => {
         window.scrollTo(0, 0);
         setTab("home");
+
+        setRegion();
+        setStartDate();
+        setEndDate();
+        setKeyword();
     };
 
     const handleOnClickSearch = () => {
@@ -18,6 +25,11 @@ export default function Footer() {
     const handleOnClickWish = () => {
         window.scrollTo(0, 0);
         setTab("wish");
+
+        setRegion();
+        setStartDate();
+        setEndDate();
+        setKeyword();
     };
 
     return (
@@ -36,7 +48,7 @@ export default function Footer() {
                         <span className="text-[10px]">홈</span>
                     </div>
                 </Link>
-                
+
                 <Link to="/search">
                     <div
                         onClick={() => handleOnClickSearch()}

@@ -39,6 +39,21 @@ const getFestivalList = async (code) => {
     }
 }
 
+const searchFestivalList = async (region, startDate, endDate, keyword) => {
+    console.log("api 사용");
+
+    const res = await fetch(baseURL + getListURL + `&eventStartDate=${startDate}&eventEndDate=${endDate}` + (regionList[region].code !== "0" ? `&areaCode=${regionList[region].code}` : ""));
+    const festivalList = await res.json();
+
+    // 키워드로 필터링
+    let festivals = [...festivalList.response.body.items.item].filter(festival => festival.title.includes(keyword));
+
+    // 받아온 축제 정보를 최근 날짜 순으로 정렬
+    festivals = [...festivals].sort((a, b) => a.eventstartdate - b.eventstartdate);
+
+    return festivals;
+}
+
 /** detail 페이지에 들어갈 축제 정보를 가져오는 함수, contentid 필요 */
 const getDetailFestivalInfo = async (contentId) => {
     const res_detailURL = await fetch(baseURL + getDetailURL + `&contentId=${contentId}`);
@@ -52,4 +67,4 @@ const getDetailFestivalInfo = async (contentId) => {
     return festivalInfo;
 }
 
-export { getFestivalList, getDetailFestivalInfo }
+export { getFestivalList, getDetailFestivalInfo, searchFestivalList }

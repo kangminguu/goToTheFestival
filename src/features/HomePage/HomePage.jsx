@@ -1,7 +1,15 @@
 import { CardList } from "../../components";
 import RegionList from "./components/RegionList";
+import { useIsDetailPageStore } from "../../store/store";
+import { useEffect } from "react";
 
 export default function HomePage() {
+    const { setIsDetailPage } = useIsDetailPageStore();
+
+    useEffect(() => {
+        setIsDetailPage(false);
+    }, [setIsDetailPage]);
+
     return (
         <div>
             <RegionList />
