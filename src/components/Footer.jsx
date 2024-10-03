@@ -37,7 +37,7 @@ export default function Footer() {
                     </div>
                 </Link>
                 
-                <Link to="/">
+                <Link to="/search">
                     <div
                         onClick={() => handleOnClickSearch()}
                         className={`text-[${

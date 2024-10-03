@@ -7,10 +7,12 @@ const day = `${date.getDate()}`.padStart(2, '0');
 const today = year + month + day;
 
 const KEY = import.meta.env.VITE_API_KEY2;
-const baseURL = `https://apis.data.go.kr/B551011/KorService1/`;
 
+const baseURL = `https://apis.data.go.kr/B551011/KorService1/`;
 const getListURL = `searchFestival1?serviceKey=${KEY}&_type=json&MobileOS=ETC&MobileApp=AppTest&numOfRows=500&pageNo=1&listYN=Y&arrange=A`;
 const dateOpt = `&eventStartDate=${today}`;
+const getDetailURL = `detailCommon1?serviceKey=${KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=15&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=10&pageNo=1`
+const getDateURL = `detailIntro1?serviceKey=${KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=15&numOfRows=10&pageNo=1`
 
 /** 축제 리스트를 받아오는 함수 */
 // 가장 최근 진행하는 순으로 정렬하기 위해 api를 한번에 받는 식으로 하였음
@@ -36,9 +38,6 @@ const getFestivalList = async (code) => {
         return festivals;
     }
 }
-
-const getDetailURL = `detailCommon1?serviceKey=${KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=15&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=10&pageNo=1`
-const getDateURL = `detailIntro1?serviceKey=${KEY}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=15&numOfRows=10&pageNo=1`
 
 /** detail 페이지에 들어갈 축제 정보를 가져오는 함수, contentid 필요 */
 const getDetailFestivalInfo = async (contentId) => {
