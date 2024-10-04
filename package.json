@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kangminguu.github.io/goToTheFestival",
+  "homepage": "https://kangminguu.github.io/goToTheFestival/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
