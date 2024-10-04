@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import { CardList } from "../../components/index";
-import { useIsDetailPageStore } from "../../store/store";
+import { useIsDetailPageStore, useTabMenuStore } from "../../store/store";
 
 export default function WishListPage() {
     const { setIsDetailPage } = useIsDetailPageStore();
+    const { tab } = useTabMenuStore();
+
+    sessionStorage.setItem("tab", tab);
 
     useEffect(() => {
         setIsDetailPage(false);

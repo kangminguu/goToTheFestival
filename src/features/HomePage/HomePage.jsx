@@ -1,10 +1,13 @@
 import { CardList } from "../../components";
 import RegionList from "./components/RegionList";
-import { useIsDetailPageStore } from "../../store/store";
+import { useIsDetailPageStore, useTabMenuStore } from "../../store/store";
 import { useEffect } from "react";
 
 export default function HomePage() {
     const { setIsDetailPage } = useIsDetailPageStore();
+    const { tab } = useTabMenuStore();
+
+    sessionStorage.setItem("tab", tab);
 
     useEffect(() => {
         setIsDetailPage(false);

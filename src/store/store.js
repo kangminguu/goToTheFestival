@@ -50,7 +50,7 @@ const useSearchTabStore = create((set) => ({
 
 /** 탭 메뉴 상태 */
 const useTabMenuStore = create((set) => ({
-    tab: "home",
+    tab: sessionStorage.getItem("tab") || "home",
     setTab: (state) => set({ tab: state })
 }));
 
