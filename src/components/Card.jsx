@@ -66,6 +66,7 @@ export default function Card({ festival }) {
                             className="object-cover w-full h-full"
                             src={image}
                             alt=""
+                            loading="lazy"
                         />
                     </div>
                     <FestivalState festivalState={festivalState} />

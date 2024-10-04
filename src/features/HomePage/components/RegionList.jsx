@@ -39,7 +39,7 @@ export default function RegionList() {
     };
 
     return (
-        <div className="max-w-[480px] w-[100%] h-[44px] z-50 bg-[#FFFFFF] shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] select-none fixed top-[52px]">
+        <div className="max-w-[480px] w-[100%] h-[44px] translate-y-[-1px] z-50 bg-[#FFFFFF] shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] select-none fixed top-[52px]">
             <div
                 className="flex h-[100%] w-auto overflow-x-auto no-scrollbar items-center"
                 ref={scrollContainerRef}

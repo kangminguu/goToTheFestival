@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFestivalList, searchFestivalList } from "../network/apiService";
 import {
     useFestivalListStore,
@@ -10,6 +10,7 @@ import {
 } from "../store/store";
 import { Card } from "./index";
 import MoveTopButton from "./ui/MoveTopButton";
+// import LazyLoad from "react-lazyload"; // LazyLoad 라이브러리
 
 export default function CardList() {
     const { festivalList, setFestivalList } = useFestivalListStore();
@@ -19,18 +20,29 @@ export default function CardList() {
     const { wishList } = useWishListStore();
     const { region, startDate, endDate, keyword } = useSearchPageStore();
 
+    // const [visibleItems, setVisibleItems] = useState(5); // 한 번에 보여줄 축제 개수
+
     useEffect(() => {
         const getFestival = async () => {
             setLoading(true); // 로딩
-            setFestivalList(await getFestivalList(selectedRegion)); // 선택된 지역으로 api 요청, 카드 리스트 만들기
+
+            const festivals = await getFestivalList(selectedRegion); // 선택된 지역으로 api 요청, 카드 리스트 만들기
+            setFestivalList(festivals);
+
             setLoading(false); // 로딩 끝
         };
 
         const searchFestival = async () => {
             setLoading(true); // 로딩
-            setFestivalList(
-                await searchFestivalList(region, startDate, endDate, keyword)
+
+            const festivals = await searchFestivalList(
+                region,
+                startDate,
+                endDate,
+                keyword
             );
+            setFestivalList(festivals);
+
             setLoading(false); // 로딩 끝
         };
 
@@ -52,9 +64,23 @@ export default function CardList() {
         keyword,
     ]); // wishList 추가하면 전체가 렌더링 됨
 
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         if (
+    //             window.innerHeight + window.scrollY >=
+    //             document.body.offsetHeight - 100
+    //         ) {
+    //             setVisibleItems((prev) => prev + 10);
+    //         }
+    //     };
+
+    //     window.addEventListener("scroll", handleScroll);
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
+
     // 로딩 시 보여주는 화면
     if (loading) {
-        return <div>축제 불러오는 중...</div>;
+        return <div className="text-center my-4">추가 축제 불러오는 중...</div>;
     }
 
     return (
@@ -64,6 +90,18 @@ export default function CardList() {
                     return <Card key={index} festival={festival} />;
                 })}
             </div>
+
+            {/* {festivalList.slice(0, visibleItems).map((festival, index) => (
+                <LazyLoad
+                    key={index}
+                    height={200}
+                    offset={100}
+                    placeholder={<div>이미지 로딩 중...</div>} // Placeholder
+                >
+                    <Card festival={festival} />
+                </LazyLoad>
+            ))} */}
+
             <MoveTopButton />
         </div>
     );

@@ -1,5 +1,5 @@
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { createHashRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom"; // git page 배포시 hashRouter가 아니면 404 오류가 난다고 함
 
 import App from "./App";
 import NotFound from "./NotFound";
