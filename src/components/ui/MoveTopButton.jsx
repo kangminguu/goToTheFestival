@@ -12,7 +12,7 @@ export default function MoveTopButton() {
         <div className="max-w-[480px] z-30 w-[100%] fixed bottom-[76px] flex justify-end">
             <div
                 onClick={clickTop}
-                className="w-[50px] h-[50px] bg-[#FF8343] rounded-[100%] mr-[16px] flex justify-center items-center"
+                className="w-[50px] h-[50px] bg-[#FF8343] rounded-[100%] mr-[16px] flex justify-center items-center shadow-[0_5px_10px_-3px_rgba(0,0,0,0.3)]"
             >
                 <div className="text-[30px]  text-[#FFFFFF] transform rotate-90">
                     <TopButtonIcon />
