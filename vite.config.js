@@ -8,6 +8,7 @@ export default defineConfig({
   css: {
     postcss: {
         plugins: [ tailwindcss() ],
+        base: '/goToTheFestival/'
     }
   }
 })
