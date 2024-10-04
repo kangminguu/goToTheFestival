@@ -26,8 +26,8 @@ const today = year + month + day;
 
 /** 검색 페이지 조건 */
 const useSearchPageStore = create((set) => ({
-    region: "0", // 지역
-    setRegion: (state = "0") => set({ region: state }),
+    region: 0, // 지역
+    setRegion: (state = 0) => set({ region: state }),
 
     startDate: today, // 시작 날짜
     setStartDate: (state = today) => set({ startDate: state }),

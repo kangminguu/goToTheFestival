@@ -9,6 +9,7 @@ import {
     useSearchPageStore,
 } from "../store/store";
 import { Card } from "./index";
+import MoveTopButton from "./ui/MoveTopButton";
 
 export default function CardList() {
     const { festivalList, setFestivalList } = useFestivalListStore();
@@ -57,10 +58,13 @@ export default function CardList() {
     }
 
     return (
-        <div className="my-[16px]">
-            {festivalList.map((festival, index) => {
-                return <Card key={index} festival={festival} />;
-            })}
+        <div>
+            <div className="my-[16px]">
+                {festivalList.map((festival, index) => {
+                    return <Card key={index} festival={festival} />;
+                })}
+            </div>
+            <MoveTopButton />
         </div>
     );
 }
