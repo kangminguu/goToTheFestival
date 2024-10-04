@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+// import { useEffect, useState } from "react";
 import { getFestivalList, searchFestivalList } from "../network/apiService";
 import {
     useFestivalListStore,

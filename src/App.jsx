@@ -1,22 +1,22 @@
 import { Header, Footer } from "./components/index";
 import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { useEffect } from "react";
 import { useIsDetailPageStore, useTabMenuStore } from "./store/store";
 
 function App() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const { tab } = useTabMenuStore();
     const { isDetailPage } = useIsDetailPageStore();
 
-    useEffect(() => {
-        // 새로고침 시 항상 /로 리디렉션
-        if (window.performance) {
-            if (performance.getEntriesByType("navigation")[0].type === "reload")
-                navigate("/"); // 새로고침 시 /로 이동
-        }
-    }, [navigate]);
+    // useEffect(() => {
+    //     // 새로고침 시 항상 /로 리디렉션
+    //     if (window.performance) {
+    //         if (performance.getEntriesByType("navigation")[0].type === "reload")
+    //             navigate("/"); // 새로고침 시 /로 이동
+    //     }
+    // }, [navigate]);
 
     return (
         <div className="max-w-[480px] mx-auto">
