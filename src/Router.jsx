@@ -48,19 +48,22 @@ import WishListPage from "./features/WishListPage/WishListPage";
 //     );
 // }
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        errorElement: <NotFound />,
-        children: [
-            { index: true, element: <HomePage /> },
-            { path: "search/", element: <SearchPage /> },
-            { path: "detail/:id", element: <DetailPage /> },
-            { path: "wish", element: <WishListPage /> },
-        ],
-    },
-]);
+const router = createBrowserRouter(
+    [
+        {
+            path: "/",
+            element: <App />,
+            errorElement: <NotFound />,
+            children: [
+                { index: true, element: <HomePage /> },
+                { path: "search/", element: <SearchPage /> },
+                { path: "detail/:id", element: <DetailPage /> },
+                { path: "wish", element: <WishListPage /> },
+            ],
+        },
+    ],
+    { basename: "/goToTheFestival" }
+);
 
 export default function Router() {
     return (
