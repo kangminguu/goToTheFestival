@@ -4,11 +4,11 @@ import tailwindcss from "tailwindcss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: '/goToTheFestival/',
-  css: {
-    postcss: {
-        plugins: [ tailwindcss() ],
+    plugins: [react()],
+    base: '/goToTheFestival/',
+    css: {
+        postcss: {
+            plugins: [tailwindcss()],
+        }
     }
-  }
 })

@@ -6,7 +6,7 @@ const month = `${date.getMonth() + 1}`.padStart(2, '0');
 const day = `${date.getDate()}`.padStart(2, '0');
 const today = year + month + day;
 
-const KEY = import.meta.env.VITE_API_KEY2;
+const KEY = import.meta.env.VITE_API_KEY;
 
 const baseURL = `https://apis.data.go.kr/B551011/KorService1/`;
 const getListURL = `searchFestival1?serviceKey=${KEY}&_type=json&MobileOS=ETC&MobileApp=AppTest&numOfRows=500&pageNo=1&listYN=Y&arrange=A`;
