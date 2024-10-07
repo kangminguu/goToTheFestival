@@ -30,8 +30,6 @@ export default function Card({ festival }) {
     const day = `${date.getDate()}`.padStart(2, "0");
     const today = year + month + day;
 
-    // 축제 진행 여부, 항상 오늘을 포함하여 이후로 조회함으로 "종료"는 있을 수 없음
-    // 찜 한 것중에 "종료"가 있다면??
     const festivalState =
         today >= festival.eventstartdate
             ? today > festival.eventenddate
